@@ -51,6 +51,9 @@ test.describe('useFieldArray', () => {
 
     await page.locator('#resetAsync').click();
 
-    await expect(page.locator('ul > li')).not.toBeVisible();
+    const listItems = await page.locator('ul > li');
+    for (let i = 0; i < (await listItems.count()); i++) {
+      await expect(listItems.nth(i)).not.toBeVisible();
+    }
   });
 });

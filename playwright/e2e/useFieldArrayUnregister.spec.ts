@@ -4,7 +4,7 @@ test.describe('useFieldArrayUnregister', () => {
   test('should behaviour correctly', async ({ page }) => {
     await page.goto('http://localhost:3000/UseFieldArrayUnregister');
 
-    await page.locator('#field0').clear().type('bill');
+    await page.locator('#field0').fill('bill');
 
     await page.locator('input[name="data.0.conditional"]').type('test');
 
@@ -101,7 +101,7 @@ test.describe('useFieldArrayUnregister', () => {
 
     await page.locator('#move').click();
 
-    await page.locator('input[name="data.2.name"]').clear().type('bill');
+    await page.locator('input[name="data.2.name"]').fill('bill');
 
     await expect(page.locator('input[name="data.2.conditional"]')).toHaveValue(
       '',

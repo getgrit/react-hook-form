@@ -4,15 +4,22 @@ test.describe('useWatchUseFieldArrayNested', () => {
   test('should watch the correct nested field array', async ({ page }) => {
     await page.goto('http://localhost:3000/useWatchUseFieldArrayNested');
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify([
-        {
-          firstName: 'Bill',
-          keyValue: [{ name: '1a' }, { name: '1c' }],
-          lastName: 'Luo',
-        },
-      ]),
-    );
+    const expected = [
+      {
+        firstName: 'Bill',
+        keyValue: [{ name: '1a' }, { name: '1c' }],
+        lastName: 'Luo',
+      },
+    ];
+
+    // Get the content of the #result element.
+    const resultContent = await page.locator('#result').textContent();
+
+    // Parse the content to a JavaScript object.
+    const received = JSON.parse(resultContent);
+
+    // Now you can compare using the regular expect function.
+    expect(received).toEqual(expected);
 
     await page.locator('#nest-append-0').click();
     await page.locator('#nest-prepend-0').click();
@@ -20,21 +27,24 @@ test.describe('useWatchUseFieldArrayNested', () => {
     await page.locator('#nest-swap-0').click();
     await page.locator('#nest-move-0').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify([
-        {
-          firstName: 'Bill',
-          keyValue: [
-            { name: 'insert' },
-            { name: 'prepend' },
-            { name: '1a' },
-            { name: '1c' },
-            { name: 'append' },
-          ],
-          lastName: 'Luo',
-        },
-      ]),
-    );
+    const expected2 = [
+      {
+        firstName: 'Bill',
+        keyValue: [
+          { name: 'insert' },
+          { name: 'prepend' },
+          { name: '1a' },
+          { name: '1c' },
+          { name: 'append' },
+        ],
+        lastName: 'Luo',
+      },
+    ];
+    const resultContent2 = await page.locator('#result').textContent();
+
+    const received2 = JSON.parse(resultContent2);
+
+    expect(received).toEqual(expected);
 
     await page.locator('#nest-remove-0').click();
 
