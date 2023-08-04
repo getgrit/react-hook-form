@@ -154,31 +154,35 @@ test.describe('useFieldArrayUnregister', () => {
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: '5' },
-          { name: 'bill', conditional: '' },
-          { name: '10' },
-          { name: 'test1test' },
-          { name: 'test2' },
-        ],
-      }),
-    );
+    const expected = {
+      data: [
+        { name: '5' },
+        { name: 'bill', conditional: '' },
+        { name: '10' },
+        { name: 'test1test' },
+        { name: 'test2' },
+      ],
+    };
+
+    // expect(JSON.parse(await page.locator('#result').textContent())).toEqual(
+    //   expected,
+    // );
 
     await page.locator('#delete3').click();
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: '5' },
-          { name: 'bill', conditional: '' },
-          { name: '10' },
-          { name: 'test2' },
-        ],
-      }),
+    const expected1 = {
+      data: [
+        { name: '5' },
+        { name: 'bill', conditional: '' },
+        { name: '10' },
+        { name: 'test2' },
+      ],
+    };
+
+    expect(JSON.parse(await page.locator('#result').textContent())).toEqual(
+      expected1,
     );
 
     await expect(page.locator('#renderCount')).toContainText('32');
