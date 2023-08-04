@@ -11,19 +11,17 @@ test.describe('useFormState', () => {
     await page.locator('input[name="arrayItem.0.test1"]').fill('ab');
     await page.locator('input[name="nestItem.nest1"]').fill('ab');
     await page.locator('input[name="lastName"]').fill('luo123456');
-    await page.selectOption('select[name="selectNumber"]', '1');
+    await page.locator('select[name="selectNumber"]').selectOption('1');
     await page.locator('input[name="pattern"]').fill('luo');
     await page.locator('input[name="min"]').fill('1');
     await page.locator('input[name="max"]').fill('21');
     await page.locator('input[name="minDate"]').fill('2019-07-30');
     await page.locator('input[name="maxDate"]').fill('2019-08-02');
-    await page.locator('input[name="lastName"]').fill('');
-    await page.locator('input[name="lastName"]').fill('luo');
+    await page.locator('input[name="lastName"]').fill('luo', { replace: true });
     await page.locator('input[name="minLength"]').fill('b');
-    await page.locator('input[name="minLength"]').press('Tab');
+    await page.locator('input[name="minLength"]').blur();
 
-    const state1 = JSON.parse(await page.locator('#state').textContent());
-    expect(state1).toStrictEqual({
+    const expectedState1 = {
       isDirty: true,
       touched: [
         'nestItem',
@@ -55,20 +53,19 @@ test.describe('useFormState', () => {
       isSubmitSuccessful: false,
       submitCount: 0,
       isValid: false,
-    });
+    };
+    const state1 = JSON.parse(await page.locator('#state').textContent());
+    expect(state1).toEqual(expectedState1);
 
     await page.locator('input[name="pattern"]').fill('23');
     await page.locator('input[name="minLength"]').fill('bi');
     await page.locator('input[name="minRequiredLength"]').fill('bi');
-    await page.locator('input[name="min"]').fill('');
-    await page.locator('input[name="min"]').fill('11');
-    await page.locator('input[name="max"]').fill('');
-    await page.locator('input[name="max"]').fill('19');
+    await page.locator('input[name="min"]').fill('11', { replace: true });
+    await page.locator('input[name="max"]').fill('19', { replace: true });
     await page.locator('input[name="minDate"]').fill('2019-08-01');
     await page.locator('input[name="maxDate"]').fill('2019-08-01');
 
-    const state2 = JSON.parse(await page.locator('#state').textContent());
-    expect(state2).toStrictEqual({
+    const expectedState2 = {
       isDirty: true,
       touched: [
         'nestItem',
@@ -102,12 +99,13 @@ test.describe('useFormState', () => {
       isSubmitSuccessful: false,
       submitCount: 0,
       isValid: true,
-    });
+    };
+    const state2 = JSON.parse(await page.locator('#state').textContent());
+    expect(state2).toEqual(expectedState2);
 
     await page.locator('#submit').click();
 
-    const state3 = JSON.parse(await page.locator('#state').textContent());
-    expect(state3).toStrictEqual({
+    const expectedState3 = {
       isDirty: true,
       touched: [
         'nestItem',
@@ -141,12 +139,13 @@ test.describe('useFormState', () => {
       isSubmitSuccessful: true,
       submitCount: 1,
       isValid: true,
-    });
+    };
+    const state3 = JSON.parse(await page.locator('#state').textContent());
+    expect(state3).toEqual(expectedState3);
 
     await page.locator('#resetForm').click();
 
-    const state4 = JSON.parse(await page.locator('#state').textContent());
-    expect(state4).toStrictEqual({
+    const expectedState4 = {
       isDirty: false,
       touched: [],
       dirty: [],
@@ -154,7 +153,9 @@ test.describe('useFormState', () => {
       isSubmitSuccessful: false,
       submitCount: 0,
       isValid: true,
-    });
+    };
+    const state4 = JSON.parse(await page.locator('#state').textContent());
+    expect(state4).toEqual(expectedState4);
 
     await expect(page.locator('#renderCount')).toHaveText('1');
   });

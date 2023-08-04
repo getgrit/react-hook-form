@@ -14,27 +14,33 @@ test.describe('defaultValues', () => {
     await expect(page.locator('input[name="test1.lastName.1"]')).toHaveValue(
       'lastName1',
     );
-    await expect(page.locator('input[name="checkbox"]').nth(0)).toBeChecked();
-    await expect(page.locator('input[name="checkbox"]').nth(1)).toBeChecked();
+    await expect(
+      page.locator('input[name="checkbox"]:nth-child(1)'),
+    ).toBeChecked();
+    await expect(
+      page.locator('input[name="checkbox"]:nth-child(2)'),
+    ).toBeChecked();
 
-    await page.locator('input[name="checkbox"]').nth(0).click();
+    await page.locator('input[name="checkbox"]:nth-child(1)').click();
     await page.locator('#toggle').click();
     await page.locator('#toggle').click();
 
     await expect(
-      page.locator('input[name="checkbox"]').nth(0),
-    ).not.toBeChecked();
-    await expect(page.locator('input[name="checkbox"]').nth(1)).toBeChecked();
-    await page.locator('input[name="checkbox"]').nth(1).click();
-
-    await page.locator('#toggle').click();
-    await page.locator('#toggle').click();
-
-    await expect(
-      page.locator('input[name="checkbox"]').nth(0),
+      page.locator('input[name="checkbox"]:nth-child(1)'),
     ).not.toBeChecked();
     await expect(
-      page.locator('input[name="checkbox"]').nth(1),
+      page.locator('input[name="checkbox"]:nth-child(2)'),
+    ).toBeChecked();
+    await page.locator('input[name="checkbox"]:nth-child(2)').click();
+
+    await page.locator('#toggle').click();
+    await page.locator('#toggle').click();
+
+    await expect(
+      page.locator('input[name="checkbox"]:nth-child(1)'),
+    ).not.toBeChecked();
+    await expect(
+      page.locator('input[name="checkbox"]:nth-child(2)'),
     ).not.toBeChecked();
   });
 });

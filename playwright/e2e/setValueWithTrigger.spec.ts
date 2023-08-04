@@ -4,26 +4,26 @@ test.describe('form setValue with trigger', () => {
   test('should set input value and trigger validation', async ({ page }) => {
     await page.goto('http://localhost:3000/setValueWithTrigger');
 
-    await page.locator('input[name="firstName"]').fill('a');
+    await page.locator('input[name="firstName"]').type('a');
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'minLength 10',
     );
-    await page.locator('input[name="firstName"]').fill('');
+    await page.locator('input[name="firstName"]').clear();
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'required',
     );
-    await page.locator('input[name="firstName"]').fill('clear1234567');
+    await page.locator('input[name="firstName"]').type('clear1234567');
 
-    await page.locator('input[name="lastName"]').fill('a');
+    await page.locator('input[name="lastName"]').type('a');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'too short',
     );
-    await page.locator('input[name="lastName"]').fill('fsdfsdfsd');
+    await page.locator('input[name="lastName"]').type('fsdfsdfsd');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'error message',
     );
-    await page.locator('input[name="lastName"]').fill('');
-    await page.locator('input[name="lastName"]').fill('bill');
+    await page.locator('input[name="lastName"]').clear();
+    await page.locator('input[name="lastName"]').type('bill');
 
     await expect(page.locator('p')).toHaveCount(0);
     await expect(page.locator('#renderCount')).toHaveText('30');

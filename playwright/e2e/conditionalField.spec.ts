@@ -5,8 +5,11 @@ test.describe('ConditionalField', () => {
     page,
   }) => {
     await page.goto('http://localhost:3000/conditionalField');
-    const state = await page.locator('#state').textContent();
-    expect(JSON.parse(state)).toStrictEqual({
+
+    const getState = async () =>
+      JSON.parse(await page.locator('#state').textContent());
+
+    expect(await getState()).toEqual({
       dirty: [],
       isSubmitted: false,
       submitCount: 0,
@@ -20,9 +23,9 @@ test.describe('ConditionalField', () => {
     await page.locator('select[name="selectNumber"]').selectOption('1');
     await page.locator('input[name="firstName"]').fill('bill');
     await page.locator('input[name="lastName"]').fill('luo');
-    await page.locator('input[name="lastName"]').press('Tab');
-    const stateAfterBlur = await page.locator('#state').textContent();
-    expect(JSON.parse(stateAfterBlur)).toStrictEqual({
+    await page.locator('input[name="lastName"]').blur();
+
+    expect(await getState()).toEqual({
       dirty: ['selectNumber', 'firstName', 'lastName'],
       isSubmitted: false,
       submitCount: 0,
@@ -32,15 +35,13 @@ test.describe('ConditionalField', () => {
       isSubmitSuccessful: false,
       isValid: true,
     });
+
     await page.locator('button#submit').click();
-    const result = await page.locator('#result').textContent();
-    expect(JSON.parse(result)).toStrictEqual({
-      selectNumber: '1',
-      firstName: 'bill',
-      lastName: 'luo',
-    });
-    const stateAfterSubmit = await page.locator('#state').textContent();
-    expect(JSON.parse(stateAfterSubmit)).toStrictEqual({
+    await expect(page.locator('#result')).toHaveText(
+      '{"selectNumber":"1","firstName":"bill","lastName":"luo"}',
+    );
+
+    expect(await getState()).toEqual({
       dirty: ['selectNumber', 'firstName', 'lastName'],
       isSubmitted: true,
       submitCount: 1,
@@ -50,42 +51,116 @@ test.describe('ConditionalField', () => {
       isSubmitSuccessful: true,
       isValid: true,
     });
-    const resultAfterSubmit = await page.locator('#result').textContent();
-    expect(JSON.parse(resultAfterSubmit)).toStrictEqual({
-      selectNumber: '1',
-      firstName: 'bill',
-      lastName: 'luo',
-    });
 
     await page.locator('select[name="selectNumber"]').selectOption('2');
+
+    expect(await getState()).toEqual({
+      dirty: ['selectNumber', 'firstName', 'lastName'],
+      isSubmitted: true,
+      submitCount: 1,
+      touched: ['selectNumber', 'firstName', 'lastName'],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: false,
+    });
+
     await page.locator('input[name="min"]').fill('10');
     await page.locator('input[name="max"]').fill('2');
-    await page.locator('input[name="max"]').press('Tab');
+    await page.locator('input[name="max"]').blur();
+
+    expect(await getState()).toEqual({
+      dirty: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isSubmitted: true,
+      submitCount: 1,
+      touched: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: true,
+    });
+
     await page.locator('button#submit').click();
-    const resultAfterSecondSubmit = await page.locator('#result').textContent();
-    expect(JSON.parse(resultAfterSecondSubmit)).toStrictEqual({
-      selectNumber: '2',
-      firstName: 'bill',
-      lastName: 'luo',
-      min: '10',
-      max: '2',
+
+    expect(await getState()).toEqual({
+      dirty: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isSubmitted: true,
+      submitCount: 2,
+      touched: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: true,
     });
 
     await page.locator('select[name="selectNumber"]').selectOption('3');
-    await page.locator('input[name="notRequired"]').fill('test');
-    await page.locator('input[name="notRequired"]').press('Tab');
-    await page.locator('button#submit').click();
-    const resultAfterThirdSubmit = await page.locator('#result').textContent();
-    expect(JSON.parse(resultAfterThirdSubmit)).toStrictEqual({
-      selectNumber: '3',
-      firstName: 'bill',
-      lastName: 'luo',
-      min: '10',
-      max: '2',
-      notRequired: 'test',
+
+    expect(await getState()).toEqual({
+      dirty: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isSubmitted: true,
+      submitCount: 2,
+      touched: ['selectNumber', 'firstName', 'lastName', 'min', 'max'],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: true,
     });
 
-    const renderCount = await page.locator('#renderCount').textContent();
-    expect(renderCount).toContain('30');
+    await page.locator('input[name="notRequired"]').fill('test');
+    await page.locator('input[name="notRequired"]').blur();
+
+    expect(await getState()).toEqual({
+      dirty: [
+        'selectNumber',
+        'firstName',
+        'lastName',
+        'min',
+        'max',
+        'notRequired',
+      ],
+      isSubmitted: true,
+      submitCount: 2,
+      touched: [
+        'selectNumber',
+        'firstName',
+        'lastName',
+        'min',
+        'max',
+        'notRequired',
+      ],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: true,
+    });
+
+    await page.locator('button#submit').click();
+
+    expect(await getState()).toEqual({
+      dirty: [
+        'selectNumber',
+        'firstName',
+        'lastName',
+        'min',
+        'max',
+        'notRequired',
+      ],
+      isSubmitted: true,
+      submitCount: 3,
+      touched: [
+        'selectNumber',
+        'firstName',
+        'lastName',
+        'min',
+        'max',
+        'notRequired',
+      ],
+      isDirty: true,
+      isSubmitting: false,
+      isSubmitSuccessful: true,
+      isValid: true,
+    });
+
+    await expect(page.locator('#renderCount')).toHaveText('30');
   });
 });

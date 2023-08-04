@@ -9,42 +9,42 @@ test.describe('delayError', () => {
     const lastInput = () => page.locator('input[name="last"]');
     const lastInputError = () => page.locator('input[name="last"] + p');
 
-    await firstInput().fill('123');
+    await firstInput().type('123');
     await page.waitForTimeout(100);
-    await expect(firstInputError()).toContainText('First too long.');
+    await expect(firstInputError()).toHaveText('First too long.');
 
-    await lastInput().fill('123567');
+    await lastInput().type('123567');
     await page.waitForTimeout(100);
-    await expect(lastInputError()).toContainText('Last too long.');
+    await expect(lastInputError()).toHaveText('Last too long.');
 
-    await lastInput().press('Tab');
+    await lastInput().blur();
     await page.locator('button').click();
 
-    await firstInput().fill('123');
-    await lastInput().fill('123567');
+    await firstInput().type('123');
+    await lastInput().type('123567');
 
-    await expect(firstInputError()).toContainText('First too long.');
-    await expect(lastInputError()).toContainText('Last too long.');
+    await expect(firstInputError()).toHaveText('First too long.');
+    await expect(lastInputError()).toHaveText('Last too long.');
 
     await firstInput().fill('1');
     await lastInput().fill('12');
 
-    await lastInput().press('Tab');
+    await lastInput().blur();
 
     await expect(page.locator('p')).toHaveCount(0);
 
     await page.locator('button').click();
 
-    await firstInput().fill('aa');
-    await lastInput().fill('a');
+    await firstInput().type('aa');
+    await lastInput().type('a');
 
-    await expect(firstInputError()).toContainText('First too long.');
-    await expect(lastInputError()).toContainText('Last too long.');
+    await expect(firstInputError()).toHaveText('First too long.');
+    await expect(lastInputError()).toHaveText('Last too long.');
 
     await firstInput().fill('1');
     await lastInput().fill('12');
 
-    await lastInput().press('Tab');
+    await lastInput().blur();
 
     await expect(page.locator('p')).toHaveCount(0);
   });

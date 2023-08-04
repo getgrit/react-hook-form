@@ -36,10 +36,10 @@ test.describe('re-validate mode', () => {
   }) => {
     await page.goto('http://localhost:3000/re-validate-mode/onSubmit/onBlur');
     await page.locator('input[name="firstName"]').click();
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
 
     await page.locator('input[name="lastName"]').click();
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
     await expect(page.locator('p')).toHaveCount(0);
 
     await page.locator('button#submit').click();
@@ -55,12 +55,12 @@ test.describe('re-validate mode', () => {
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
     await page.locator('input[name="lastName"]').fill('luo12');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
 
     await expect(page.locator('p')).toHaveCount(0);
     await expect(page.locator('#renderCount')).toHaveText('4');
@@ -84,12 +84,12 @@ test.describe('re-validate mode', () => {
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
     await page.locator('input[name="lastName"]').fill('luo12');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
 
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
@@ -146,12 +146,12 @@ test.describe('re-validate mode', () => {
     await page.goto('http://localhost:3000/re-validate-mode/onBlur/onBlur');
 
     await page.locator('input[name="firstName"]').click();
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
     await page.locator('input[name="lastName"]').click();
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
@@ -160,12 +160,12 @@ test.describe('re-validate mode', () => {
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
     await page.locator('input[name="lastName"]').fill('luo12');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
 
     await expect(page.locator('p')).toHaveCount(0);
     await expect(page.locator('#renderCount')).toHaveText('5');
@@ -177,18 +177,18 @@ test.describe('re-validate mode', () => {
     await page.goto('http://localhost:3000/re-validate-mode/onBlur/onChange');
 
     await page.locator('input[name="firstName"]').click();
-    await page.locator('input[name="firstName"]').press('Tab');
+    await page.locator('input[name="firstName"]').blur();
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
     await page.locator('input[name="lastName"]').click();
-    await page.locator('input[name="lastName"]').press('Tab');
+    await page.locator('input[name="lastName"]').blur();
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
 
-    await page.locator('input[name="firstName"]').fill('');
-    await page.locator('input[name="lastName"]').fill('');
+    await page.locator('input[name="firstName"]').clear();
+    await page.locator('input[name="lastName"]').clear();
 
     await page.locator('button#submit').click();
 

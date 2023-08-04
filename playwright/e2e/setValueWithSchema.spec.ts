@@ -6,21 +6,21 @@ test.describe('form setValue with schema', () => {
   }) => {
     await page.goto('http://localhost:3000/setValueWithSchema');
 
-    await page.locator('input[name="firstName"]').fill('a');
+    await page.locator('input[name="firstName"]').type('a');
     await expect(page.locator('input[name="firstName"] + p')).toHaveText(
       'firstName error',
     );
     await expect(page.locator('p')).toHaveCount(1);
-    await page.locator('input[name="firstName"]').fill('asdasdasdasd');
+    await page.locator('input[name="firstName"]').type('asdasdasdasd');
 
-    await page.locator('input[name="lastName"]').fill('a');
+    await page.locator('input[name="lastName"]').type('a');
     await expect(page.locator('input[name="lastName"] + p')).toHaveText(
       'lastName error',
     );
     await expect(page.locator('p')).toHaveCount(1);
-    await page.locator('input[name="lastName"]').fill('asdasdasdasd');
+    await page.locator('input[name="lastName"]').type('asdasdasdasd');
 
-    await page.locator('input[name="age"]').fill('a2323');
+    await page.locator('input[name="age"]').type('a2323');
 
     await page.locator('#submit').click();
     await expect(page.locator('p')).toHaveCount(1);

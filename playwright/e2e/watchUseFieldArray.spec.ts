@@ -9,7 +9,7 @@ test.describe('watchUseFieldArray', () => {
     await page.locator('#append').click();
     await expect(page.locator('#result')).toContainText('[{"name":"2"}]');
 
-    await page.locator('#field0').type('test');
+    await page.locator('#field0').fill('test');
     await expect(page.locator('#result')).toContainText('[{"name":"2test"}]');
 
     await page.locator('#prepend').click();

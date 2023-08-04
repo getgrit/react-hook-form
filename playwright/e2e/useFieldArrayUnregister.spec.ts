@@ -8,17 +8,15 @@ test.describe('useFieldArrayUnregister', () => {
 
     await page.locator('input[name="data.0.conditional"]').type('test');
 
-    await expect(page.locator('#dirtyFields')).toContainText(
-      JSON.stringify({
-        data: [{ name: true, conditional: true }],
-      }),
+    const dirtyFields = JSON.parse(
+      await page.locator('#dirtyFields').textContent(),
     );
+    expect(dirtyFields).toEqual({ data: [{ name: true, conditional: true }] });
 
-    await page.locator('input[name="data.0.conditional"]').press('Tab');
+    await page.locator('input[name="data.0.conditional"]').blur();
 
-    await expect(page.locator('#touched')).toContainText(
-      JSON.stringify([{ name: true, conditional: true }]),
-    );
+    const touched = JSON.parse(await page.locator('#touched').textContent());
+    expect(touched).toEqual([{ name: true, conditional: true }]);
 
     await page.locator('#prepend').click();
 
@@ -29,22 +27,27 @@ test.describe('useFieldArrayUnregister', () => {
       '',
     );
 
-    await expect(page.locator('#dirtyFields')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: true },
-          { name: true, conditional: true },
-          { name: true },
-          { name: true },
-        ],
-      }),
+    const dirtyFieldsAfterPrepend = JSON.parse(
+      await page.locator('#dirtyFields').textContent(),
     );
+    expect(dirtyFieldsAfterPrepend).toEqual({
+      data: [
+        { name: true },
+        { name: true, conditional: true },
+        { name: true },
+        { name: true },
+      ],
+    });
 
-    await expect(page.locator('#touched')).toContainText(
-      JSON.stringify([null, { name: true, conditional: true }]),
+    const touchedAfterPrepend = JSON.parse(
+      await page.locator('#touched').textContent(),
     );
+    expect(touchedAfterPrepend).toEqual([
+      null,
+      { name: true, conditional: true },
+    ]);
 
-    await page.locator('input[name="data.0.name"]').press('Tab');
+    await page.locator('input[name="data.0.name"]').blur();
 
     await page.locator('#swap').click();
 
@@ -55,20 +58,26 @@ test.describe('useFieldArrayUnregister', () => {
       '',
     );
 
-    await expect(page.locator('#dirtyFields')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: true },
-          { name: false },
-          { name: true, conditional: true },
-          { name: true },
-        ],
-      }),
+    const dirtyFieldsAfterSwap = JSON.parse(
+      await page.locator('#dirtyFields').textContent(),
     );
+    expect(dirtyFieldsAfterSwap).toEqual({
+      data: [
+        { name: true },
+        { name: false },
+        { name: true, conditional: true },
+        { name: true },
+      ],
+    });
 
-    await expect(page.locator('#touched')).toContainText(
-      JSON.stringify([{ name: true }, null, { name: true, conditional: true }]),
+    const touchedAfterSwap = JSON.parse(
+      await page.locator('#touched').textContent(),
     );
+    expect(touchedAfterSwap).toEqual([
+      { name: true },
+      null,
+      { name: true, conditional: true },
+    ]);
 
     await page.locator('#insert').click();
 
@@ -76,28 +85,30 @@ test.describe('useFieldArrayUnregister', () => {
 
     await page.locator('input[name="data.4.name"]').type('test');
 
-    await expect(page.locator('#dirtyFields')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: true },
-          { name: true },
-          { name: true },
-          { name: true },
-          { name: true, conditional: true },
-          { name: true },
-        ],
-      }),
+    const dirtyFieldsAfterInsert = JSON.parse(
+      await page.locator('#dirtyFields').textContent(),
     );
-
-    await expect(page.locator('#touched')).toContainText(
-      JSON.stringify([
+    expect(dirtyFieldsAfterInsert).toEqual({
+      data: [
         { name: true },
         { name: true },
         { name: true },
-        null,
+        { name: true },
         { name: true, conditional: true },
-      ]),
+        { name: true },
+      ],
+    });
+
+    const touchedAfterInsert = JSON.parse(
+      await page.locator('#touched').textContent(),
     );
+    expect(touchedAfterInsert).toEqual([
+      { name: true },
+      { name: true },
+      { name: true },
+      null,
+      { name: true, conditional: true },
+    ]);
 
     await page.locator('#move').click();
 
@@ -107,28 +118,30 @@ test.describe('useFieldArrayUnregister', () => {
       '',
     );
 
-    await expect(page.locator('#dirtyFields')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: true },
-          { name: true },
-          { name: true, conditional: true },
-          { name: true },
-          { name: true },
-          { name: true },
-        ],
-      }),
+    const dirtyFieldsAfterMove = JSON.parse(
+      await page.locator('#dirtyFields').textContent(),
     );
-
-    await expect(page.locator('#touched')).toContainText(
-      JSON.stringify([
+    expect(dirtyFieldsAfterMove).toEqual({
+      data: [
         { name: true },
         { name: true },
         { name: true, conditional: true },
         { name: true },
-        null,
-      ]),
+        { name: true },
+        { name: true },
+      ],
+    });
+
+    const touchedAfterMove = JSON.parse(
+      await page.locator('#touched').textContent(),
     );
+    expect(touchedAfterMove).toEqual([
+      { name: true },
+      { name: true },
+      { name: true, conditional: true },
+      { name: true },
+      null,
+    ]);
 
     await page.locator('#delete1').click();
 
@@ -138,48 +151,51 @@ test.describe('useFieldArrayUnregister', () => {
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: '5' },
-          { name: 'bill', conditional: '' },
-          { name: '10' },
-          { name: 'test1' },
-          { name: 'test2' },
-        ],
-      }),
+    const resultAfterSubmit = JSON.parse(
+      await page.locator('#result').textContent(),
     );
+    expect(resultAfterSubmit).toEqual({
+      data: [
+        { name: '5' },
+        { name: 'bill', conditional: '' },
+        { name: '10' },
+        { name: 'test1' },
+        { name: 'test2' },
+      ],
+    });
 
     await page.locator('input[name="data.3.name"]').type('test');
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: '5' },
-          { name: 'bill', conditional: '' },
-          { name: '10' },
-          { name: 'test1test' },
-          { name: 'test2' },
-        ],
-      }),
+    const resultAfterSecondSubmit = JSON.parse(
+      await page.locator('#result').textContent(),
     );
+    expect(resultAfterSecondSubmit).toEqual({
+      data: [
+        { name: '5' },
+        { name: 'bill', conditional: '' },
+        { name: '10' },
+        { name: 'test1test' },
+        { name: 'test2' },
+      ],
+    });
 
     await page.locator('#delete3').click();
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#result')).toContainText(
-      JSON.stringify({
-        data: [
-          { name: '5' },
-          { name: 'bill', conditional: '' },
-          { name: '10' },
-          { name: 'test2' },
-        ],
-      }),
+    const resultAfterThirdSubmit = JSON.parse(
+      await page.locator('#result').textContent(),
     );
+    expect(resultAfterThirdSubmit).toEqual({
+      data: [
+        { name: '5' },
+        { name: 'bill', conditional: '' },
+        { name: '10' },
+        { name: 'test2' },
+      ],
+    });
 
     await expect(page.locator('#renderCount')).toContainText('32');
   });
