@@ -44,3 +44,6 @@ package-lock.json
 /cypress/parallel-weights.json
 /cypress/screenshots
 /cypress/fixtures
+/test-results/
+/playwright-report/
+/playwright/.cache/
