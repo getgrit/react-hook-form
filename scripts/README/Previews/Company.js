@@ -1,6 +1,6 @@
 import { toAvatar, toLogo, toLink } from 'Link';
 
-export default function generate(company) {
+export function generate(company) {
   const { website, avatar, logo } = company;
 
   const icon = avatar ? toAvatar(avatar) : toLogo(logo);

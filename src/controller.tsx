@@ -50,4 +50,4 @@ const Controller = <
   props: ControllerProps<TFieldValues, TName>,
 ) => props.render(useController<TFieldValues, TName>(props));
 
-export { Controller };
+export const controller = ;

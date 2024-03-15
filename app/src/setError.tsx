@@ -116,4 +116,4 @@ const SetError: React.FC = () => {
   );
 };
 
-export default SetError;
+export const setError = SetError;

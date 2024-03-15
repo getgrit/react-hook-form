@@ -2,7 +2,7 @@ import { VALIDATION_MODE } from '../constants';
 import { ReadFormState } from '../types';
 import isEmptyObject from '../utils/isEmptyObject';
 
-export default <T extends Record<string, any>, K extends ReadFormState>(
+export const shouldRenderFormState = <T extends Record<string, any>, K extends ReadFormState>(
   formStateData: T,
   _proxyFormState: K,
   isRoot?: boolean,

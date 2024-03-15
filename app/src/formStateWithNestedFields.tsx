@@ -104,4 +104,4 @@ const FormStateWithNestedFields = () => {
   );
 };
 
-export default FormStateWithNestedFields;
+export const formStateWithNestedFields = FormStateWithNestedFields;

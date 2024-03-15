@@ -1,7 +1,7 @@
 import { FieldArrayMethodProps, InternalFieldName } from '../types';
 import isUndefined from '../utils/isUndefined';
 
-export default (
+export const getFocusFieldName = (
   name: InternalFieldName,
   index: number,
   options: FieldArrayMethodProps = {},

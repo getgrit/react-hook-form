@@ -48,4 +48,4 @@ function Reset() {
   );
 }
 
-export default Reset;
+export const reset = Reset;

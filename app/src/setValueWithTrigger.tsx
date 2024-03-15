@@ -71,4 +71,4 @@ const SetValueWithTrigger: React.FC = () => {
   );
 };
 
-export default SetValueWithTrigger;
+export const setValueWithTrigger = SetValueWithTrigger;

@@ -7,7 +7,7 @@ type FormValues = {
   email: string;
 };
 
-export default function App() {
+export function App() {
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) =>
     alert(JSON.stringify(data));

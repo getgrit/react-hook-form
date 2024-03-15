@@ -3,7 +3,7 @@ import isNullOrUndefined from '../utils/isNullOrUndefined';
 import isString from '../utils/isString';
 import isUndefined from '../utils/isUndefined';
 
-export default <T extends NativeFieldValue>(
+export const getFieldValueAs = <T extends NativeFieldValue>(
   value: T,
   { valueAsNumber, valueAsDate, setValueAs }: Field['_f'],
 ) =>

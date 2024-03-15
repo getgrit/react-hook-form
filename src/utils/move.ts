@@ -1,6 +1,6 @@
 import isUndefined from './isUndefined';
 
-export default <T>(
+export const move = <T>(
   data: (T | undefined)[],
   from: number,
   to: number,

@@ -4,7 +4,7 @@ import {
   ValidateResult,
 } from '../types';
 
-export default (
+export const appendErrors = (
   name: InternalFieldName,
   validateAllFieldCriteria: boolean,
   errors: InternalFieldErrors,

@@ -44,4 +44,4 @@ function TriggerValidation() {
   );
 }
 
-export default TriggerValidation;
+export const triggerValidation = TriggerValidation;

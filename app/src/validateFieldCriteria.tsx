@@ -190,4 +190,4 @@ const ValidateFieldCriteria: React.FC = () => {
   );
 };
 
-export default ValidateFieldCriteria;
+export const validateFieldCriteria = ValidateFieldCriteria;

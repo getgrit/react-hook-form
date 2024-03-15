@@ -8,7 +8,7 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-export default function AutoUnregister() {
+export function AutoUnregister() {
   const { register, control, handleSubmit } = useForm<{
     test: string;
     test1: string;

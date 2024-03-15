@@ -16,7 +16,7 @@ function IsolateReRender({ control }: { control: Control }) {
   return <div>{firstName}</div>;
 }
 
-export default function App() {
+export function App() {
   const { register, control, handleSubmit } = useForm<FormValues>();
   const onSubmit = handleSubmit((data) => alert(JSON.stringify(data)));
 

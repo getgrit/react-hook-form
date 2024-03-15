@@ -20,7 +20,7 @@ const resolver: Resolver<FormValues> = async (values) => {
   };
 };
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, errors } = useForm<FormValues>({
     resolver: resolver,
   });

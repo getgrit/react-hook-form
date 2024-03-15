@@ -172,4 +172,4 @@ const UseFieldArrayUnregister: React.FC = () => {
   );
 };
 
-export default UseFieldArrayUnregister;
+export const useFieldArrayUnregister = UseFieldArrayUnregister;

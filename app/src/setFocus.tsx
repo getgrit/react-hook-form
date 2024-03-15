@@ -70,4 +70,4 @@ const SetFocus = () => {
   );
 };
 
-export default SetFocus;
+export const setFocus = SetFocus;

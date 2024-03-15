@@ -51,7 +51,7 @@ type FormValues = {
   gender: string;
 };
 
-export default function App() {
+export function App() {
   const onSubmit = (data: FormValues) => alert(JSON.stringify(data));
 
   return (

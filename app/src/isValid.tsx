@@ -104,4 +104,4 @@ const IsValid: React.FC = () => {
   );
 };
 
-export default IsValid;
+export const isValid = IsValid;

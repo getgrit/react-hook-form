@@ -43,7 +43,7 @@ type Form = {
 
 const PureReactSelect = React.memo(ReactSelect);
 
-export default function Field() {
+export function Field() {
   const { mode } = useParams();
   const methods = useForm<Form>({
     defaultValues,

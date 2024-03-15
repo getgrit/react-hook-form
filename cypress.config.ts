@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 const cypressReplay = require('@replayio/cypress');
 const fs = require('fs');
 
-export default defineConfig({
+export const cypress = defineConfig({
   video: false,
   e2e: {
     // We've imported your old cypress plugins here.

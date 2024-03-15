@@ -11,4 +11,4 @@ type ConcatTupleTenTimes<T extends unknown[]> = [
   ...T,
 ];
 
-export type HundredTuple<T> = ConcatTupleTenTimes<ConcatTupleTenTimes<[T]>>;
+export const tuple = type HundredTuple<T> = ConcatTupleTenTimes<ConcatTupleTenTimes<[T]>>;

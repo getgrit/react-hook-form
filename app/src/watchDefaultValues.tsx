@@ -42,4 +42,4 @@ function WatchDefaultValues() {
   );
 }
 
-export default WatchDefaultValues;
+export const watchDefaultValues = WatchDefaultValues;

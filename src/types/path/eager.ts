@@ -21,7 +21,7 @@ type PathImpl<K extends string | number, V> = V extends
  * Path<{foo: {bar: string}}> = 'foo' | 'foo.bar'
  * ```
  */
-export type Path<T> = T extends ReadonlyArray<infer V>
+export const eager = type Path<T> = T extends ReadonlyArray<infer V>
   ? IsTuple<T> extends true
     ? {
         [K in TupleKeys<T>]-?: PathImpl<K & string, T[K]>;
@@ -34,7 +34,7 @@ export type Path<T> = T extends ReadonlyArray<infer V>
 /**
  * See {@link Path}
  */
-export type FieldPath<TFieldValues extends FieldValues> = Path<TFieldValues>;
+export const eager = type FieldPath<TFieldValues extends FieldValues> = Path<TFieldValues>;
 
 /**
  * Helper type for recursively constructing paths through a type.
@@ -59,7 +59,7 @@ type ArrayPathImpl<K extends string | number, V> = V extends
  * Path<{foo: {bar: string[], baz: number[]}}> = 'foo.bar' | 'foo.baz'
  * ```
  */
-export type ArrayPath<T> = T extends ReadonlyArray<infer V>
+export const eager = type ArrayPath<T> = T extends ReadonlyArray<infer V>
   ? IsTuple<T> extends true
     ? {
         [K in TupleKeys<T>]-?: ArrayPathImpl<K & string, T[K]>;
@@ -72,7 +72,7 @@ export type ArrayPath<T> = T extends ReadonlyArray<infer V>
 /**
  * See {@link ArrayPath}
  */
-export type FieldArrayPath<TFieldValues extends FieldValues> =
+export const eager = type FieldArrayPath<TFieldValues extends FieldValues> =
   ArrayPath<TFieldValues>;
 
 /**
@@ -85,7 +85,7 @@ export type FieldArrayPath<TFieldValues extends FieldValues> =
  * PathValue<[number, string], '1'> = string
  * ```
  */
-export type PathValue<T, P extends Path<T> | ArrayPath<T>> = T extends any
+export const eager = type PathValue<T, P extends Path<T> | ArrayPath<T>> = T extends any
   ? P extends `${infer K}.${infer R}`
     ? K extends keyof T
       ? R extends Path<T[K]>
@@ -103,23 +103,23 @@ export type PathValue<T, P extends Path<T> | ArrayPath<T>> = T extends any
       ? V
       : never
     : never
-  : never;
+  : never;;
 
 /**
  * See {@link PathValue}
  */
-export type FieldPathValue<
+export const eager = type FieldPathValue<
   TFieldValues extends FieldValues,
   TFieldPath extends FieldPath<TFieldValues>,
-> = PathValue<TFieldValues, TFieldPath>;
+> = PathValue<TFieldValues, TFieldPath>;;
 
 /**
  * See {@link PathValue}
  */
-export type FieldArrayPathValue<
+export const eager = type FieldArrayPathValue<
   TFieldValues extends FieldValues,
   TFieldArrayPath extends FieldArrayPath<TFieldValues>,
-> = PathValue<TFieldValues, TFieldArrayPath>;
+> = PathValue<TFieldValues, TFieldArrayPath>;;
 
 /**
  * Type to evaluate the type which the given paths point to.
@@ -131,7 +131,7 @@ export type FieldArrayPathValue<
  *   = [{bar: string}, string]
  * ```
  */
-export type FieldPathValues<
+export const eager = type FieldPathValues<
   TFieldValues extends FieldValues,
   TPath extends FieldPath<TFieldValues>[] | readonly FieldPath<TFieldValues>[],
 > = {} & {
@@ -139,7 +139,7 @@ export type FieldPathValues<
     TFieldValues,
     TPath[K] & FieldPath<TFieldValues>
   >;
-};
+};;
 
 /**
  * Type which eagerly collects all paths through a fieldType that matches a give type
@@ -151,11 +151,11 @@ export type FieldPathValues<
  *   = 'foo.bar' | 'baz'
  * ```
  */
-export type FieldPathByValue<TFieldValues extends FieldValues, TValue> = {
+export const eager = type FieldPathByValue<TFieldValues extends FieldValues, TValue> = {
   [Key in FieldPath<TFieldValues>]: FieldPathValue<
     TFieldValues,
     Key
   > extends TValue
     ? Key
     : never;
-}[FieldPath<TFieldValues>];
+}[FieldPath<TFieldValues>];;

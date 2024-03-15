@@ -48,4 +48,4 @@ function DefaultValues() {
   );
 }
 
-export default DefaultValues;
+export const defaultValues = DefaultValues;

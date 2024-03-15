@@ -1,4 +1,4 @@
-export type EventType =
+export const events = type EventType =
   | 'focus'
   | 'blur'
   | 'change'

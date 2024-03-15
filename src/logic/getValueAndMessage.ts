@@ -2,7 +2,7 @@ import { ValidationRule } from '../types';
 import isObject from '../utils/isObject';
 import isRegex from '../utils/isRegex';
 
-export default (validationData?: ValidationRule) =>
+export const getValueAndMessage = (validationData?: ValidationRule) =>
   isObject(validationData) && !isRegex(validationData)
     ? validationData
     : {

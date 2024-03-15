@@ -24,7 +24,7 @@ import getRadioValue from './getRadioValue';
 import getValidateError from './getValidateError';
 import getValueAndMessage from './getValueAndMessage';
 
-export default async <T extends NativeFieldValue>(
+export const validateField = async <T extends NativeFieldValue>(
   field: Field,
   inputValue: T,
   validateAllFieldCriteria: boolean,

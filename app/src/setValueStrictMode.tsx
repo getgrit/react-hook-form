@@ -49,4 +49,4 @@ const SetValueAsyncStrictMode = () => {
   );
 };
 
-export default SetValueAsyncStrictMode;
+export const setValueStrictMode = SetValueAsyncStrictMode;

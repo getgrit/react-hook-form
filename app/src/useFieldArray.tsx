@@ -332,4 +332,4 @@ const UseFieldArray: React.FC = () => {
   );
 };
 
-export default UseFieldArray;
+export const useFieldArray = UseFieldArray;

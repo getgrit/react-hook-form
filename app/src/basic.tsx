@@ -166,4 +166,4 @@ const Basic: React.FC = () => {
   );
 };
 
-export default Basic;
+export const basic = Basic;

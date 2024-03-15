@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data));

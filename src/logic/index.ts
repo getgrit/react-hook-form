@@ -1,3 +1,3 @@
 import appendErrors from './appendErrors';
 
-export { appendErrors };
+export const index = ;

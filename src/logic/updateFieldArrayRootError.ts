@@ -8,7 +8,7 @@ import compact from '../utils/compact';
 import get from '../utils/get';
 import set from '../utils/set';
 
-export default <T extends FieldValues = FieldValues>(
+export const updateFieldArrayRootError = <T extends FieldValues = FieldValues>(
   errors: FieldErrors<T>,
   error: Partial<Record<string, FieldError>>,
   name: InternalFieldName,

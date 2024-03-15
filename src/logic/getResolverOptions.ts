@@ -9,7 +9,7 @@ import {
 import { get } from '../utils';
 import set from '../utils/set';
 
-export default <TFieldValues extends FieldValues>(
+export const getResolverOptions = <TFieldValues extends FieldValues>(
   fieldsNames: Set<InternalFieldName> | InternalFieldName[],
   _fields: FieldRefs,
   criteriaMode?: CriteriaMode,

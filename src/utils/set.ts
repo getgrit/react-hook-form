@@ -4,7 +4,7 @@ import isKey from './isKey';
 import isObject from './isObject';
 import stringToPath from './stringToPath';
 
-export default function set(
+export function set(
   object: FieldValues,
   path: string,
   value?: unknown,

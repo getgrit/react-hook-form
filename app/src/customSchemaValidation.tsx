@@ -114,4 +114,4 @@ const BasicSchemaValidation: React.FC = () => {
   );
 };
 
-export default BasicSchemaValidation;
+export const customSchemaValidation = BasicSchemaValidation;

@@ -141,4 +141,4 @@ const SetValue: React.FC = () => {
   );
 };
 
-export default SetValue;
+export const setValue = SetValue;

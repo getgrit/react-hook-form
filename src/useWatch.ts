@@ -40,7 +40,7 @@ import { useSubscribe } from './useSubscribe';
  * })
  * ```
  */
-export function useWatch<
+export const useWatch = function useWatch<
   TFieldValues extends FieldValues = FieldValues,
 >(props: {
   defaultValue?: DeepPartialSkipArrayKey<TFieldValues>;
@@ -68,7 +68,7 @@ export function useWatch<
  * })
  * ```
  */
-export function useWatch<
+export const useWatch = function useWatch<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: {
@@ -101,7 +101,7 @@ export function useWatch<
  * })
  * ```
  */
-export function useWatch<
+export const useWatch = function useWatch<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
 >(props: {
@@ -124,7 +124,7 @@ export function useWatch<
  * const values = useWatch()
  * ```
  */
-export function useWatch<
+export const useWatch = function useWatch<
   TFieldValues extends FieldValues = FieldValues,
   TFieldNames extends FieldPath<TFieldValues>[] = FieldPath<TFieldValues>[],
 >(): FieldPathValues<TFieldValues, TFieldNames>;

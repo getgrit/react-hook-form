@@ -35,7 +35,7 @@ function useInputCache(values, causeField, effectField, callback) {
   }, [values, causeField, effectField, callback]);
 }
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, setValue, control } = useForm({
     mode: 'onChange',
     defaultValues: {

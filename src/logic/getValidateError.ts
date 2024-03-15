@@ -2,7 +2,7 @@ import { FieldError, Ref, ValidateResult } from '../types';
 import isBoolean from '../utils/isBoolean';
 import isMessage from '../utils/isMessage';
 
-export default function getValidateError(
+export function getValidateError(
   result: ValidateResult,
   ref: Ref,
   type = 'validate',

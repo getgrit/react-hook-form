@@ -50,7 +50,7 @@ const SubForm = ({ control }: { control: Control<FormInputs> }) => {
   );
 };
 
-export const UseFormState: React.FC = () => {
+export const useFormState = const UseFormState: React.FC = () => {
   const { register, handleSubmit, control, reset } = useForm<FormInputs>({
     mode: 'onChange',
   });

@@ -2,7 +2,7 @@ import isFunction from './isFunction';
 import isObject from './isObject';
 import isWeb from './isWeb';
 
-export default function cloneObject<T>(data: T): T {
+export function cloneObject<T>(data: T): T {
   let copy: any;
   const isArray = Array.isArray(data);
 

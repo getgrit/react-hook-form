@@ -5,7 +5,7 @@ const Input = React.forwardRef(({ name }, ref) => {
   return <input ref={ref} name={name} />;
 });
 
-export default function App() {
+export function App() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data, event) => {
     console.log(data);

@@ -8,7 +8,7 @@ const defaultReturn: RadioFieldResult = {
   value: null,
 };
 
-export default (options?: HTMLInputElement[]): RadioFieldResult =>
+export const getRadioValue = (options?: HTMLInputElement[]): RadioFieldResult =>
   Array.isArray(options)
     ? options.reduce(
         (previous, option): RadioFieldResult =>

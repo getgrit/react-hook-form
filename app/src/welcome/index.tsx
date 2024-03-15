@@ -246,4 +246,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export const index = Component;

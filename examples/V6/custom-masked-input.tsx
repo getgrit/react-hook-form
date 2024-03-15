@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export const maskPhoneNumber = (phone) => {
+export const custom_masked_input = const maskPhoneNumber = (phone) => {
   //Example: 0(999) 999 99 99
   const x = phone
     .replace(/\D/g, '')
@@ -13,7 +13,7 @@ export const maskPhoneNumber = (phone) => {
       }`;
 };
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = (data) => console.log(data);
 

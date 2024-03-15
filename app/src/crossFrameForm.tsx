@@ -80,4 +80,4 @@ const FrameForm: React.FC = () => {
   );
 };
 
-export default CrossFrameForm;
+export const crossFrameForm = CrossFrameForm;

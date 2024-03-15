@@ -7,7 +7,7 @@ import isObject from '../utils/isObject';
 import isRegex from '../utils/isRegex';
 import isUndefined from '../utils/isUndefined';
 
-export default <T extends ValidationValue>(
+export const getRuleValue = <T extends ValidationValue>(
   rule?: ValidationRule<T> | ValidationValueMessage<T>,
 ) =>
   isUndefined(rule)
