@@ -68,4 +68,4 @@ const SetValueCustomRegister: React.FC = () => {
   );
 };
 
-export default SetValueCustomRegister;
+export const setValueCustomRegister = SetValueCustomRegister;

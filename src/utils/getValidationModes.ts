@@ -1,7 +1,7 @@
 import { VALIDATION_MODE } from '../constants';
 import { Mode } from '../types';
 
-export default (
+export const getValidationModes = (
   mode?: Mode,
 ): {
   isOnSubmit: boolean;

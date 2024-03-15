@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import FormSection1 from './formSection1';
 import FormSection2 from './formSection2';
 
-export default function Section1({ register }) {
+export function Section1({ register }) {
   return (
     <>
       <div>
@@ -27,7 +27,7 @@ export default function Section1({ register }) {
   );
 }
 
-export default function formSection2({ register }) {
+export function formSection2({ register }) {
   return (
     <>
       <div>
@@ -79,7 +79,7 @@ export default function formSection2({ register }) {
   );
 }
 
-export default function App() {
+export function App() {
   const { register, errors, handleSubmit } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data));

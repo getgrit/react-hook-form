@@ -113,4 +113,4 @@ const WatchUseFieldArray: React.FC = () => {
   );
 };
 
-export default WatchUseFieldArray;
+export const watchUseFieldArray = WatchUseFieldArray;

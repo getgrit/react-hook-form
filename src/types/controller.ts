@@ -12,7 +12,7 @@ import {
   UseFormStateReturn,
 } from './';
 
-export type ControllerFieldState = {
+export const controller = type ControllerFieldState = {
   /**
    * @deprecated check `fieldState.error` instead
    * ```jsx
@@ -23,9 +23,9 @@ export type ControllerFieldState = {
   isTouched: boolean;
   isDirty: boolean;
   error?: FieldError;
-};
+}
 
-export type ControllerRenderProps<
+export const controller = type ControllerRenderProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
@@ -36,7 +36,7 @@ export type ControllerRenderProps<
   ref: RefCallBack;
 };
 
-export type UseControllerProps<
+export const controller = type UseControllerProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
@@ -48,16 +48,16 @@ export type UseControllerProps<
   shouldUnregister?: boolean;
   defaultValue?: FieldPathValue<TFieldValues, TName>;
   control?: Control<TFieldValues>;
-};
+};;
 
-export type UseControllerReturn<
+export const controller = type UseControllerReturn<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   field: ControllerRenderProps<TFieldValues, TName>;
   formState: UseFormStateReturn<TFieldValues>;
   fieldState: ControllerFieldState;
-};
+};;
 
 /**
  * Render function to provide the control for the field.
@@ -80,7 +80,7 @@ export type UseControllerReturn<
  * />
  * ```
  */
-export type ControllerProps<
+export const controller = type ControllerProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
@@ -93,4 +93,4 @@ export type ControllerProps<
     fieldState: ControllerFieldState;
     formState: UseFormStateReturn<TFieldValues>;
   }) => React.ReactElement;
-} & UseControllerProps<TFieldValues, TName>;
+} & UseControllerProps<TFieldValues, TName>;;

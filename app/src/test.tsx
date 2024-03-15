@@ -79,4 +79,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export const test = Component;

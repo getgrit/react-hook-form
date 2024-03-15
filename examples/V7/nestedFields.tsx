@@ -72,7 +72,7 @@ export function FormSection2({ register }) {
   );
 }
 
-export default function App() {
+export function App() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data));

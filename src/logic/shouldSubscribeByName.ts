@@ -1,6 +1,6 @@
 import convertToArrayPayload from '../utils/convertToArrayPayload';
 
-export default <T extends string | string[] | undefined>(
+export const shouldSubscribeByName = <T extends string | string[] | undefined>(
   name?: T,
   signalName?: string,
   exact?: boolean,

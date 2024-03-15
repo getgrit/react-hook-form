@@ -106,7 +106,7 @@ function NestedArray({
   );
 }
 
-export default () => {
+export const watchUseFieldArrayNested = () => {
   const { register, control, reset, setValue, handleSubmit, watch } =
     useForm<FormValues>({
       defaultValues: {

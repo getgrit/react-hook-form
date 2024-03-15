@@ -10,4 +10,4 @@ const sponsors = join(source, 'Sponsors.yaml'),
   helpers = join(source, 'Helpers.yaml'),
   readme = join(root, 'README.md');
 
-export default { template, helpers, sponsors, readme };
+export const Files = { template, helpers, sponsors, readme };

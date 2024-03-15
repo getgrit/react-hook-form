@@ -1,4 +1,4 @@
-export default (
+export const skipValidation = (
   isBlurEvent: boolean,
   isTouched: boolean,
   isSubmitted: boolean,

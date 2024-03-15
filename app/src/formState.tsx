@@ -87,4 +87,4 @@ const FormState = () => {
   );
 };
 
-export default FormState;
+export const formState = FormState;

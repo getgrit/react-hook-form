@@ -5,15 +5,15 @@ interface Base<T, V> {
   value: V;
 }
 
-export type InfiniteType<T> = Base<InfiniteType<T>, T>;
+export const traversable = type InfiniteType<T> = Base<InfiniteType<T>, T>;
 
-export type NullableInfiniteType<T> =
+export const traversable = type NullableInfiniteType<T> =
   | null
   | undefined
   | Partial<Base<NullableInfiniteType<T>, T>>;
 
-export type Depth3Type<T> = Base<Base<Base<never, T>, T>, T>;
+export const traversable = type Depth3Type<T> = Base<Base<Base<never, T>, T>, T>;
 
-export interface Nested<T> {
+export const traversable = interface Nested<T> {
   nested: T;
-}
+};

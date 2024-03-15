@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 
-export default function App() {
+export function App() {
   const methods = useForm();
   const { register, handleSubmit } = methods;
   return (

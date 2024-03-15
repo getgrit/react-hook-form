@@ -1,6 +1,6 @@
 import { InternalFieldName, Names } from '../types';
 
-export default (
+export const isWatched = (
   name: InternalFieldName,
   _names: Names,
   isBlurEvent?: boolean,

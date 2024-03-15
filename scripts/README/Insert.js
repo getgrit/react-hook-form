@@ -18,6 +18,6 @@ function toType(string) {
   return string.trim().substring(1);
 }
 
-export default function insertInto(template) {
+export function insertInto(template) {
   return template.replace(insert_id, insert);
 }

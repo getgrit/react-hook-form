@@ -53,4 +53,4 @@ const Watch: React.FC = () => {
   );
 };
 
-export default Watch;
+export const watch = Watch;

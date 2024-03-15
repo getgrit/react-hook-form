@@ -214,4 +214,4 @@ const ManualRegisterForm: React.FC = () => {
   );
 };
 
-export default ManualRegisterForm;
+export const manualRegisterForm = ManualRegisterForm;

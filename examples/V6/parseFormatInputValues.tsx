@@ -14,7 +14,7 @@ const ParseFormatTextarea = ({ value = [], onChange }) => {
   return <textarea onChange={handleChange} value={text} />;
 };
 
-export default function App() {
+export function App() {
   const { control, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);

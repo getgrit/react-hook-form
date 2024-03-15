@@ -1,1 +1,1 @@
-export default (value: string) => /^\w*$/.test(value);
+export const isKey = (value: string) => /^\w*$/.test(value);

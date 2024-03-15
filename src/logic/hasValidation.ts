@@ -1,6 +1,6 @@
 import { Field } from '../types';
 
-export default (options: Field['_f']) =>
+export const hasValidation = (options: Field['_f']) =>
   options.mount &&
   (options.required ||
     options.min ||

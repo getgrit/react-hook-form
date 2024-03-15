@@ -91,4 +91,4 @@ const FormStateWithSchema: React.FC = () => {
   );
 };
 
-export default FormStateWithSchema;
+export const formStateWithSchema = FormStateWithSchema;

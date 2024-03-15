@@ -118,7 +118,7 @@ function NestedArray({
   );
 }
 
-export default () => {
+export const useFieldArrayNested = () => {
   const { register, control, reset, setValue, handleSubmit } =
     useForm<FormValues>({
       defaultValues: {

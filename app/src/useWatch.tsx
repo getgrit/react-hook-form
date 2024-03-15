@@ -103,7 +103,7 @@ const Child = ({ control }: { control: Control<FormInputs> }) => {
   );
 };
 
-export default () => {
+export const useWatch = () => {
   const { register, control } = useForm<FormInputs>();
 
   counter++;

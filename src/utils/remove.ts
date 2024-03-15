@@ -14,7 +14,7 @@ function removeAtIndexes<T>(data: T[], indexes: number[]): T[] {
   return compact(temp).length ? temp : [];
 }
 
-export default <T>(data: T[], index?: number | number[]): T[] =>
+export const remove = <T>(data: T[], index?: number | number[]): T[] =>
   isUndefined(index)
     ? []
     : removeAtIndexes(

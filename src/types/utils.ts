@@ -9,7 +9,7 @@ Warning: all of these interfaces are empty.
 If you want type definitions for various properties, you need to add `--lib DOM` (via command line or tsconfig.json).
 */
 
-export type Noop = () => void;
+export const utils = type Noop = () => void;
 
 interface File extends Blob {
   readonly lastModified: number;
@@ -22,7 +22,7 @@ interface FileList {
   [index: number]: File;
 }
 
-export type Primitive =
+export const utils = type Primitive =
   | null
   | undefined
   | string
@@ -31,21 +31,21 @@ export type Primitive =
   | symbol
   | bigint;
 
-export type BrowserNativeObject = Date | FileList | File;
+export const utils = type BrowserNativeObject = Date | FileList | File;
 
-export type EmptyObject = { [K in string | number]: never };
+export const utils = type EmptyObject = { [K in string | number]: never };
 
-export type NonUndefined<T> = T extends undefined ? never : T;
+export const utils = type NonUndefined<T> = T extends undefined ? never : T;
 
-export type LiteralUnion<T extends U, U extends Primitive> =
+export const utils = type LiteralUnion<T extends U, U extends Primitive> =
   | T
   | (U & { _?: never });
 
-export type DeepPartial<T> = T extends BrowserNativeObject | NestedValue
+export const utils = type DeepPartial<T> = T extends BrowserNativeObject | NestedValue
   ? T
   : { [K in keyof T]?: DeepPartial<T[K]> };
 
-export type DeepPartialSkipArrayKey<T> = T extends
+export const utils = type DeepPartialSkipArrayKey<T> = T extends
   | BrowserNativeObject
   | NestedValue
   ? T
@@ -62,7 +62,7 @@ export type DeepPartialSkipArrayKey<T> = T extends
  * IsAny<string> = false
  * ```
  */
-export type IsAny<T> = 0 extends 1 & T ? true : false;
+export const utils = type IsAny<T> = 0 extends 1 & T ? true : false;
 
 /**
  * Checks whether the type is never
@@ -72,24 +72,24 @@ export type IsAny<T> = 0 extends 1 & T ? true : false;
  * IsAny<string> = false
  * ```
  */
-export type IsNever<T> = [T] extends [never] ? true : false;
+export const utils = type IsNever<T> = [T] extends [never] ? true : false;
 
-export type DeepMap<T, TValue> = IsAny<T> extends true
+export const utils = type DeepMap<T, TValue> = IsAny<T> extends true
   ? any
   : T extends BrowserNativeObject | NestedValue
   ? TValue
   : T extends object
   ? { [K in keyof T]: DeepMap<NonUndefined<T[K]>, TValue> }
-  : TValue;
+  : TValue;;
 
-export type IsFlatObject<T extends object> = Extract<
+export const utils = type IsFlatObject<T extends object> = Extract<
   Exclude<T[keyof T], NestedValue | Date | FileList>,
   any[] | object
 > extends never
   ? true
-  : false;
+  : false;;
 
-export type Merge<A, B> = {
+export const utils = type Merge<A, B> = {
   [K in keyof A | keyof B]?: K extends keyof A & keyof B
     ? [A[K], B[K]] extends [object, object]
       ? Merge<A[K], B[K]>

@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 
 import './styles.css';
 
-export const clearTel = (tel) => tel.replace(/[^0-9]/g, '');
+export const customMaskedInputWithController = const clearTel = (tel) => tel.replace(/[^0-9]/g, '');
 
 const isNotFilledTel = (v) => {
   const clearedTel = clearTel(v);
@@ -41,7 +41,7 @@ const onSubmit = (data) => {
   console.log('submit', data);
 };
 
-export default function App() {
+export function App() {
   const {
     handleSubmit,
     formState: { errors },

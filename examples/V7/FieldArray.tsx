@@ -6,7 +6,7 @@ function createArrayWithNumbers(length) {
   return Array.from({ length }, (_, i) => i);
 }
 
-export default function App() {
+export function App() {
   const {
     register,
     handleSubmit,

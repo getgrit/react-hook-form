@@ -12,7 +12,7 @@ const defaultResult: CheckboxFieldResult = {
 
 const validResult = { value: true, isValid: true };
 
-export default (options?: HTMLInputElement[]): CheckboxFieldResult => {
+export const getCheckboxValue = (options?: HTMLInputElement[]): CheckboxFieldResult => {
   if (Array.isArray(options)) {
     if (options.length > 1) {
       const values = options

@@ -1,12 +1,12 @@
 import convertToArrayPayload from './convertToArrayPayload';
 
-export default function insert<T>(data: T[], index: number): (T | undefined)[];
-export default function insert<T>(
+export const insert = function insert<T>(data: T[], index: number): (T | undefined)[];;
+export const insert = function insert<T>(
   data: T[],
   index: number,
   value: T | T[],
-): T[];
-export default function insert<T>(
+): T[];;
+export function insert<T>(
   data: T[],
   index: number,
   value?: T | T[],

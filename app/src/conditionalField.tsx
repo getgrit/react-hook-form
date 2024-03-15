@@ -102,4 +102,4 @@ const ConditionalField: React.FC = () => {
   );
 };
 
-export default ConditionalField;
+export const conditionalField = ConditionalField;

@@ -1,7 +1,7 @@
 import convertToArrayPayload from './convertToArrayPayload';
 import isObject from './isObject';
 
-export default <T>(value: T) =>
+export const fillBooleanArray = <T>(value: T) =>
   (convertToArrayPayload(value) as T[]).map((data) => {
     if (isObject(data)) {
       const object: Record<string, boolean> = {};

@@ -9,7 +9,7 @@ const SignupSchema = yup.object().shape({
   website: yup.string().url(),
 });
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: SignupSchema,
   });

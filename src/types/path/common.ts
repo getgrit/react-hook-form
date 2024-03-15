@@ -4,13 +4,13 @@ import { IsAny, IsNever } from '../utils';
  * Type alias to `string` which describes a lodash-like path through an object.
  * E.g. `'foo.bar.0.baz'`
  */
-export type PathString = string;
+export const common = type PathString = string;
 
 /**
  * Type which can be traversed through with a {@link PathString}.
  * I.e. objects, arrays, and tuples
  */
-export type Traversable = object;
+export const common = type Traversable = object;
 
 /**
  * Type to query whether an array type T is a tuple type.
@@ -21,43 +21,43 @@ export type Traversable = object;
  * IsTuple<number[]> = false
  * ```
  */
-export type IsTuple<T extends ReadonlyArray<any>> = number extends T['length']
+export const common = type IsTuple<T extends ReadonlyArray<any>> = number extends T['length']
   ? false
   : true;
 
 /**
  * Type which can be used to index an array or tuple type.
  */
-export type ArrayKey = number;
+export const common = type ArrayKey = number;
 
 /**
  * Type which can be used to index an object.
  */
-export type Key = string;
+export const common = type Key = string;
 
 /**
  * Type to assert that a type is a {@link Key}.
  * @typeParam T - type which may be a {@link Key}
  */
-export type AsKey<T> = Extract<T, Key>;
+export const common = type AsKey<T> = Extract<T, Key>;
 
 /**
  * Type to convert a type to a {@link Key}.
  * @typeParam T - type which may be converted to a {@link Key}
  */
-export type ToKey<T> = T extends ArrayKey ? `${T}` : AsKey<T>;
+export const common = type ToKey<T> = T extends ArrayKey ? `${T}` : AsKey<T>;
 
 /**
  * Type which describes a path through an object
  * as a list of individual {@link Key}s.
  */
-export type PathTuple = Key[];
+export const common = type PathTuple = Key[];
 
 /**
  * Type to assert that a type is a {@link PathTuple}.
  * @typeParam T - type which may be a {@link PathTuple}
  */
-export type AsPathTuple<T> = Extract<T, PathTuple>;
+export const common = type AsPathTuple<T> = Extract<T, PathTuple>;
 
 /**
  * Type to intersect a union type.
@@ -69,7 +69,7 @@ export type AsPathTuple<T> = Extract<T, PathTuple>;
  *   = { foo: string; bar: number }
  * ```
  */
-export type UnionToIntersection<U> = (
+export const common = type UnionToIntersection<U> = (
   U extends any ? (_: U) => any : never
 ) extends (_: infer I) => any
   ? I
@@ -116,7 +116,7 @@ type SplitPathStringImpl<
  * SplitPathString<'.'> = []
  * ```
  */
-export type SplitPathString<PS extends PathString> = SplitPathStringImpl<
+export const common = type SplitPathString<PS extends PathString> = SplitPathStringImpl<
   PS,
   []
 >;
@@ -143,7 +143,7 @@ type JoinPathTupleImpl<
  * JoinPathTuple<[]> = never
  * ```
  */
-export type JoinPathTuple<PT extends PathTuple> = PT extends [
+export const common = type JoinPathTuple<PT extends PathTuple> = PT extends [
   infer K,
   ...infer R,
 ]
@@ -206,7 +206,7 @@ type TryAccessArray<
  * EvaluateKey<string[], '1'> = string
  * ```
  */
-export type EvaluateKey<T, K extends Key> = T extends ReadonlyArray<any>
+export const common = type EvaluateKey<T, K extends Key> = T extends ReadonlyArray<any>
   ? IsTuple<T> extends true
     ? TryAccess<T, K>
     : TryAccessArray<T, K>
@@ -224,7 +224,7 @@ export type EvaluateKey<T, K extends Key> = T extends ReadonlyArray<any>
  * EvaluatePath<number, ['foo']> = undefined
  * ```
  */
-export type EvaluatePath<T, PT extends PathTuple> = PT extends [
+export const common = type EvaluatePath<T, PT extends PathTuple> = PT extends [
   infer K,
   ...infer R,
 ]
@@ -239,7 +239,7 @@ export type EvaluatePath<T, PT extends PathTuple> = PT extends [
  * TupleKeys<[number, string]> = '0' | '1'
  * ```
  */
-export type TupleKeys<T extends ReadonlyArray<any>> = Exclude<
+export const common = type TupleKeys<T extends ReadonlyArray<any>> = Exclude<
   keyof T,
   keyof any[]
 >;
@@ -268,7 +268,7 @@ type NumericObjectKeys<T extends Traversable> = ToKey<
  * NumericKeys<{0: string, '1': string} | [number] | number[]> = '0'
  * ```
  */
-export type NumericKeys<T extends Traversable> = UnionToIntersection<
+export const common = type NumericKeys<T extends Traversable> = UnionToIntersection<
   T extends ReadonlyArray<any>
     ? IsTuple<T> extends true
       ? [TupleKeys<T>]
@@ -286,7 +286,7 @@ export type NumericKeys<T extends Traversable> = UnionToIntersection<
  * ObjectKeys<{foo: string, bar: number}, string> = 'foo'
  * ```
  */
-export type ObjectKeys<T extends Traversable> = Exclude<
+export const common = type ObjectKeys<T extends Traversable> = Exclude<
   ToKey<keyof T>,
   `${string}.${string}` | ''
 >;
@@ -304,7 +304,7 @@ export type ObjectKeys<T extends Traversable> = Exclude<
  * CheckKeyConstraint<string[], number, string> = `${number}`
  * ```
  */
-export type CheckKeyConstraint<T, K extends Key, U> = K extends any
+export const common = type CheckKeyConstraint<T, K extends Key, U> = K extends any
   ? EvaluateKey<T, K> extends U
     ? K
     : never
@@ -320,7 +320,7 @@ export type CheckKeyConstraint<T, K extends Key, U> = K extends any
  * ContainsIndexable<{foo: string} | number[]> = true
  * ```
  */
-export type ContainsIndexable<T> = IsNever<
+export const common = type ContainsIndexable<T> = IsNever<
   Extract<T, ReadonlyArray<any>>
 > extends true
   ? false
@@ -352,7 +352,7 @@ type KeysImpl<T> = [T] extends [Traversable]
  * Keys<{0: string, '1': string} | [number] | number[]> = '0'
  * ```
  */
-export type Keys<T, U = unknown> = IsAny<T> extends true
+export const common = type Keys<T, U = unknown> = IsAny<T> extends true
   ? Key
   : IsNever<T> extends true
   ? Key
@@ -373,7 +373,7 @@ export type Keys<T, U = unknown> = IsAny<T> extends true
  * HasKey<{foo: string}, 'foo' | 'bar'> = false
  * ```
  */
-export type HasKey<T, K extends Key> = IsNever<Exclude<K, Keys<T>>>;
+export const common = type HasKey<T, K extends Key> = IsNever<Exclude<K, Keys<T>>>;
 
 /**
  * Type to implement {@link ValidPathPrefix} tail recursively.
@@ -407,7 +407,7 @@ type ValidPathPrefixImpl<
  * ValidPathPrefix<{foo: {bar: string}}, ['foo', 'ba']> = ['foo']
  * ```
  */
-export type ValidPathPrefix<T, PT extends PathTuple> = ValidPathPrefixImpl<
+export const common = type ValidPathPrefix<T, PT extends PathTuple> = ValidPathPrefixImpl<
   T,
   PT,
   []
@@ -423,6 +423,6 @@ export type ValidPathPrefix<T, PT extends PathTuple> = ValidPathPrefixImpl<
  * HasPath<{foo: {bar: string}}, ['foo', 'ba']> = false
  * ```
  */
-export type HasPath<T, PT extends PathTuple> = ValidPathPrefix<T, PT> extends PT
+export const common = type HasPath<T, PT extends PathTuple> = ValidPathPrefix<T, PT> extends PT
   ? true
   : false;

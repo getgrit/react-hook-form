@@ -28,4 +28,4 @@ const focusFieldBy = (
   }
 };
 
-export default focusFieldBy;
+export const focusFieldBy = focusFieldBy;

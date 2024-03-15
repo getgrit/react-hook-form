@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
 
-export default function App() {
+export function App() {
   const {
     register,
     formState: { errors },

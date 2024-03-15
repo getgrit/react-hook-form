@@ -8,4 +8,4 @@
  * expectType<[0, 1]>(_ as Actual);
  * ```
  */
-export declare const _: never;
+export const type = declare const _: never;

@@ -1,6 +1,6 @@
 import { toProfile, toAvatar } from 'Link';
 
-export default function generate(individual) {
+export function generate(individual) {
   const { github, avatar, alt } = individual;
 
   const lines = [

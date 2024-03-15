@@ -2,7 +2,7 @@ import { FieldError, FieldErrors, FieldValues } from '../types';
 import get from '../utils/get';
 import isKey from '../utils/isKey';
 
-export default function schemaErrorLookup<T extends FieldValues = FieldValues>(
+export function schemaErrorLookup<T extends FieldValues = FieldValues>(
   errors: FieldErrors<T>,
   _fields: FieldValues,
   name: string,

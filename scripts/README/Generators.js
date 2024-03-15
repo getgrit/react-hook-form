@@ -13,4 +13,4 @@ function toPreviews(type) {
   return Data[type].map(Previews[type]).join('\n');
 }
 
-export default { Sponsors, Helpers };
+export const Generators = { Sponsors, Helpers };

@@ -1,1 +1,1 @@
-export default (value: unknown): value is null | undefined => value == null;
+export const isNullOrUndefined = (value: unknown): value is null | undefined => value == null;

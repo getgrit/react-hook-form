@@ -6,7 +6,7 @@ function createArrayWithNumbers(length) {
   return Array.from({ length }, (_, k) => k);
 }
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, errors } = useForm();
   const [size, setSize] = useState(1);
   const onSubmit = (data) => {

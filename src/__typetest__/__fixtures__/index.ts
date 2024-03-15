@@ -1,4 +1,4 @@
-export * from './pathString';
-export * from './traversable';
-export * from './tuple';
-export * from './type';
+export const index = ;
+export const index = ;
+export const index = ;
+export const index = ;

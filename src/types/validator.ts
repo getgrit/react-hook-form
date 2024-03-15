@@ -2,26 +2,26 @@ import { Message } from './errors';
 import { FieldValues, InternalFieldName } from './fields';
 import { FieldPath, FieldPathValue } from './path';
 
-export type ValidationValue = boolean | number | string | RegExp;
+export const validator = type ValidationValue = boolean | number | string | RegExp;
 
-export type ValidationRule<
+export const validator = type ValidationRule<
   TValidationValue extends ValidationValue = ValidationValue,
 > = TValidationValue | ValidationValueMessage<TValidationValue>;
 
-export type ValidationValueMessage<
+export const validator = type ValidationValueMessage<
   TValidationValue extends ValidationValue = ValidationValue,
 > = {
   value: TValidationValue;
   message: Message;
-};
+}
 
-export type ValidateResult = Message | Message[] | boolean | undefined;
+export const validator = type ValidateResult = Message | Message[] | boolean | undefined;
 
-export type Validate<TFieldValue> = (
+export const validator = type Validate<TFieldValue> = (
   value: TFieldValue,
 ) => ValidateResult | Promise<ValidateResult>;
 
-export type RegisterOptions<
+export const validator = type RegisterOptions<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Partial<{

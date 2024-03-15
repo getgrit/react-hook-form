@@ -1,4 +1,4 @@
-export default () => {
+export const generateId = () => {
   const d =
     typeof performance === 'undefined' ? Date.now() : performance.now() * 1000;
 

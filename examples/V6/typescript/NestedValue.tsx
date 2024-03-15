@@ -20,7 +20,7 @@ const options = [
   { label: 'Vanilla', value: 'vanilla' },
 ];
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, watch, setValue, errors } = useForm<{
     autocomplete: NestedValue<Option[]>;
     select: NestedValue<number[]>;

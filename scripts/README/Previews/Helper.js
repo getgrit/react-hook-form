@@ -1,6 +1,6 @@
 import { toProfile, toAvatar } from 'Link';
 
-export default function generate(helper) {
+export function generate(helper) {
   const { github, avatar } = helper;
 
   const lines = [

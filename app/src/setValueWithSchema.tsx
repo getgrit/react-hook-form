@@ -102,4 +102,4 @@ const SetValueWithSchema: React.FC = () => {
   );
 };
 
-export default SetValueWithSchema;
+export const setValueWithSchema = SetValueWithSchema;

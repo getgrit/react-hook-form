@@ -20,7 +20,7 @@ const MyInput = ({ name, label, register }) => {
   );
 };
 
-export default function App() {
+export function App() {
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = (data) => {
     alert(JSON.stringify(data, null));

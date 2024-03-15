@@ -24,7 +24,7 @@ function isEmptyArray(obj: unknown[]) {
   return true;
 }
 
-export default function unset(object: any, path: string) {
+export function unset(object: any, path: string) {
   const updatePath = isKey(path) ? [path] : stringToPath(path);
   const childObject =
     updatePath.length == 1 ? object : baseGet(object, updatePath);
